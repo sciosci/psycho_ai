@@ -4,6 +4,7 @@ import os
 import wget
 import gzip
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from scipy.spatial.distance import cosine
