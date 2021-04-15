@@ -1,4 +1,4 @@
-__all__ = ['get_glove_100d', 'pse', 'bisect_search', 'twoafc_experiment', 'similarity', 'psy_cur']
+__all__ = ['get_glove_100d', 'pse', 'jnd', 'plot_pse', 'bisect_search', 'twoafc_experiment', 'similarity', 'psy_cur']
 
 import os 
 import wget
@@ -122,8 +122,35 @@ def psy_cur(right_word, left_word, target_word, embeddings_dict):
     plt.gca().xaxis.set_ticks_position('bottom')
     plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
 
-def pse(pairs, target, embeddings_dict):
-    w_dict = {}
+def jnd(embedding_list, target, pairs):
+    w_dict = {} 
+    w_dict['target'] = []
+    w_dict['Left'] = []
+    w_dict['Right'] = []
+    for n in target:
+        for pair in pairs:
+            w_dict['Left'].append(pair[0])
+            w_dict['Right'].append(pair[1])
+            w_dict['target'].append(n)
+    handpicked_pse = pd.DataFrame(w_dict)
+    
+    pse_list = []
+    for embedding in embedding_list:
+        R, C = handpicked_pse.shape
+        handpicked_pse['PSE'] = None
+        for i in range(R):
+            n = handpicked_pse.loc[i]['target']
+            l = handpicked_pse.loc[i]['Left']  
+            r = handpicked_pse.loc[i]['Right']
+            handpicked_pse.loc[i, 'PSE'] = bisect_search(l, r, n, embedding, delta_alpha=1/100)
+
+        handpicked_pse['PSE'] = handpicked_pse['PSE'].astype('float')
+        pse_list.append(handpicked_pse.groupby('target')['PSE'].mean())
+        handpicked_jnd = pd.concat(pse_list).groupby('target').var()
+    return handpicked_jnd.sort_values().to_dict()
+
+def pse(embedding, target, pairs):
+    w_dict = {} 
     w_dict['target'] = []
     w_dict['Left'] = []
     w_dict['Right'] = []
@@ -140,18 +167,22 @@ def pse(pairs, target, embeddings_dict):
         n = handpicked_pse.loc[i]['target']
         l = handpicked_pse.loc[i]['Left']  
         r = handpicked_pse.loc[i]['Right']
-        handpicked_pse.loc[i, 'PSE'] = int(100*bisect_search(l, r, n, embeddings_dict, delta_alpha=1/100))
+        handpicked_pse.loc[i, 'PSE'] = bisect_search(l, r, n, embeddings_dict, delta_alpha=1/100)
 
     handpicked_pse['PSE'] = handpicked_pse['PSE'].astype('float')
     handpicked_pse = handpicked_pse.groupby('target')['PSE'].mean().sort_values()
+    return handpicked_pse.to_dict()
 
-    plt.figure(figsize = (10, 15), dpi=300)
-    plt.plot(handpicked_pse.values, handpicked_pse.index.values, linewidth = 2, c = 'b')
-    plt.gca().tick_params(axis='both', which='major', labelsize=7)
-    plt.xticks([0, 50, 100], ['100% Left Attribute', '50% Left Attribute \n 50% Right Attribute', '100% Right Attribute']);
+def plot_pse(pse_score):
+    plt.figure(figsize = (6, 6), dpi=150)
+    plt.plot(pse_score.values(), pse_score.keys(), linewidth = 2, c = 'b')
+    plt.gca().tick_params(axis='y', which='major', labelsize=12)
+    plt.gca().tick_params(axis='x', which='major', direction="in", labelsize=8)
+
+    plt.xticks([0, .5, 1], ['100% \n                 Female Attribute', '50% Female Attribute \n 50% Male Attribute', '100% \n Male Attribute              ']);
     # plt.yticks([0, 0.5, 1], ['No', '', 'Yes']);
-    plt.xlabel('PSE', fontsize=10);
-    plt.ylabel('target', fontsize=10);
+    plt.xlabel('PSE', fontsize=15)
+    plt.ylabel('Occupation', fontsize=15)
     # plt.title('Is it a male plumber?', fontsize=14);
     plt.gca().spines['right'].set_visible(False)
     plt.gca().spines['top'].set_visible(False)
