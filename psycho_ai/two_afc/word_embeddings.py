@@ -150,7 +150,7 @@ def jnd(embedding_list, target, pairs):
         handpicked_jnd = pd.concat(pse_list).groupby('target').var()
     return handpicked_jnd.sort_values().to_dict()
 
-def pse(embedding, target, pairs):
+def pse(embeddings_dict, target, pairs):
     w_dict = {} 
     w_dict['target'] = []
     w_dict['Left'] = []
