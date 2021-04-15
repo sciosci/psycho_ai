@@ -23,7 +23,7 @@ pse_score = two_afc.pse(embedding, target_occupations, female_male_pairs)
 jnd_score = two_afc.jnd(embedding_list,target_occupations, female_male_pairs)
 ```
 PSE Output
-```json
+```
 {'advisor': 0.23486328125,
  'architect': 0.24462890625,
  'officer': 0.29150390625,
@@ -35,7 +35,7 @@ PSE Output
  'hygienist': 0.830078125}
  ```
  JND Output
- ```json
+ ```
 {'janitor': 0.0010945320129394534,
  'technician': 0.0012115716934204103,
  'administrator': 0.0013679265975952148,
