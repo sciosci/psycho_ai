@@ -1,1 +1,1 @@
-from word_embeddings import *
+from .word_embeddings import *
