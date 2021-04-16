@@ -21,7 +21,11 @@ Extract PSE and JND of word embedding models:
 from psycho_ai import two_afc
 
 embedding = two_afc.get_glove_100d()
-careers = ['accountant', 'supervisor', 'worker', 'clerk', 'instructor', 'inspector','electrician','appraiser', 'administrator', 'receptionist', 'advisor', 'chemist', 'planner','paralegal', 'veterinarian', 'psychologist',  'baker', 'teacher', 'lawyer','nutritionist', 'hairdresser','pathologist', 'surgeon', 'practitioner',  'carpenter']
+careers = ['accountant', 'supervisor', 'worker', 'clerk', 'instructor', 'inspector',
+          'electrician','appraiser', 'administrator', 'receptionist', 'advisor', 'chemist',
+          'planner','paralegal', 'veterinarian', 'psychologist',  'baker', 'teacher', 
+          'lawyer','nutritionist', 'hairdresser','pathologist', 'surgeon', 'practitioner', 
+          'carpenter']
 gender_pairs = [['woman', 'man'],
                 ['female', 'male'],
                 ['she', 'he'],
