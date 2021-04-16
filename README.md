@@ -19,8 +19,9 @@ Extract PSE and JND of word embedding models:
 
 ```python
 from psycho_ai import two_afc
+embedding = two_afc.get_glove_100d()
 pse_score = two_afc.pse(embedding, target_occupations, female_male_pairs)
-jnd_score = two_afc.jnd(embedding_list,target_occupations, female_male_pairs)
+jnd_score = two_afc.jnd([embedding_A,embedding_B...],target_occupations, female_male_pairs)
 ```
 PSE Output
 ```
