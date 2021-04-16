@@ -23,7 +23,7 @@ embedding = two_afc.get_glove_100d()
 pse_score = two_afc.pse(embedding, target_occupations, female_male_pairs)
 jnd_score = two_afc.jnd([embedding_A,embedding_B...],target_occupations, female_male_pairs)
 ```
-PSE Output
+PSE Score
 ```
 {'advisor': 0.23486328125,
  'architect': 0.24462890625,
@@ -35,7 +35,7 @@ PSE Output
  'hairdresser': 0.76513671875,
  'hygienist': 0.830078125}
  ```
- JND Output
+ JND Score
  ```
 {'janitor': 0.0010945320129394534,
  'technician': 0.0012115716934204103,
