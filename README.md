@@ -36,7 +36,7 @@ female_male_pairs = [['woman', 'man'],
                      ['sister', 'brother']]
                 
 pse_score = two_afc.pse(embedding, target_occupations, female_male_pairs)
-jnd_score = two_afc.jnd([embedding_A,embedding_B...],target_occupations, female_male_pairs)
+jnd_score = two_afc.jnd([embedding_A,embedding_B],target_occupations, female_male_pairs)
 ```
 PSE Score
 ```
