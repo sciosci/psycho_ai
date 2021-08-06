@@ -154,14 +154,15 @@ def jnd(embedding_list, target, pairs):
 def pse(embeddings_dict, target_list, pairs):
     pse_dict = {}
     for phase in target_list:
+        embedding_ = embeddings_dict
         w_list = re.split(r'\s+|-|_|\.',phase)
         w_list = list(filter(None, w_list))
-        counter = 0
-        for w in w_list:
-            for p in pairs:
-                l, r = p[0], p[1]
-                counter += bisect_search(l, r, w, embeddings_dict, delta_alpha=1/100)
-        pse = counter / len(pairs) / len(w_list)
+        embedding_[phase] = np.mean([embedding_[x] for x in w_list], axis=0)
+        pse_score = 0
+        for p in pairs:
+            l, r = p[0], p[1]
+            pse_score += bisect_search(l, r, phase, embedding_, delta_alpha=1/100)
+        pse = pse_score / len(pairs) 
         pse_dict[phase] = pse
     return {k: v for k, v in sorted(pse_dict.items(), key=lambda item: item[1])}
 
