@@ -1,4 +1,4 @@
 {
-    "African-American": ["Alonzo", "Jamel", "Alphonse", "Jerome", "Leroy", "Torrance", "Darnell", "Lamar", "Malik", "Terrence", "Nichelle", "Shereen", "Ebony", "Latisha", "Shaniqua", "Jasmine", "Tanisha", "Tia", "Lakisha", "Latoya"],
-    "European": ["Adam", "Harry", "Josh", "Roger", "Alan", "Frank", "Justin", "Ryan", "Andrew", "Jack", "Amanda", "Courtney", "Heather", "Melanie", "Katie", "Betsy", "Kristin", "Nancy", "Stephanie", "Ellen"]
+    "african-american": ["alonzo", "jamel", "alphonse", "jerome", "leroy", "torrance", "darnell", "lamar", "malik", "terrence", "nichelle", "shereen", "ebony", "latisha", "shaniqua", "jasmine", "tanisha", "tia", "lakisha", "latoya"],
+    "european": ["adam", "harry", "josh", "roger", "alan", "frank", "justin", "ryan", "andrew", "jack", "amanda", "courtney", "heather", "melanie", "katie", "betsy", "kristin", "nancy", "stephanie", "ellen"]
 }
