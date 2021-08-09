@@ -1,3 +1,4 @@
 glove.6B.100d.txt.gz
 .vscode/
 __pycache__/
+.ipynb_checkpoints/
