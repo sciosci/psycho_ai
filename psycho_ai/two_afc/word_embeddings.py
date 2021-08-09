@@ -166,8 +166,10 @@ def pse(embeddings_dict, target_list, pairs):
         pse_dict[phase] = pse
     return {k: v for k, v in sorted(pse_dict.items(), key=lambda item: item[1])}
 
-def plot_pse(pse_score):
-    plt.figure(figsize = (6, 6), dpi=150)
+
+f = plt.figure(figsize = (6, 6), dpi=150)
+def plot_pse(pse_score, fig=f):
+    ax = fig.add_subplot(1,1,1)
     plt.plot(list(pse_score.values()), list(pse_score.keys()), linewidth = 2, c = 'b')
     plt.gca().tick_params(axis='y', which='major', labelsize=12)
     plt.gca().tick_params(axis='x', which='major', direction="in", labelsize=8)
@@ -184,3 +186,4 @@ def plot_pse(pse_score):
     plt.gca().xaxis.set_ticks_position('bottom')
     plt.grid(alpha=0.3)
     plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
+    return ax
