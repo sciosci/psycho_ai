@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="psycho_AI-pkg-sciosci", # Replace with your own username
-    version="0.1.2",
+    version="0.1.3",
     author="Lizhen Liang, Zijun Yi and Daniel Acuna",
     long_description=long_description,
     long_description_content_type="text/markdown",
