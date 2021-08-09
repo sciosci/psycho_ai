@@ -186,4 +186,3 @@ def plot_pse(pse_score):
     plt.gca().xaxis.set_ticks_position('bottom')
     plt.grid(alpha=0.3)
     plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
-    return fig
