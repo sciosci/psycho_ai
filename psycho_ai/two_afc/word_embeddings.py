@@ -168,7 +168,7 @@ def pse(embeddings_dict, target_list, pairs):
 
 
 
-def plot_pse(pse_score, fig=f):
+def plot_pse(pse_score):
     plt.figure(figsize = (6, 6), dpi=150)
     plt.plot(list(pse_score.values()), list(pse_score.keys()), linewidth = 2, c = 'b')
     plt.gca().tick_params(axis='y', which='major', labelsize=12)
