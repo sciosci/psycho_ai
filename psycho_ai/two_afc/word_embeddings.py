@@ -167,23 +167,20 @@ def pse(embeddings_dict, target_list, pairs):
     return {k: v for k, v in sorted(pse_dict.items(), key=lambda item: item[1])}
 
 
-f = plt.figure(figsize = (6, 6), dpi=150)
-def plot_pse(pse_score, fig=f):
-    f, ax = fig
-    ax.plot(list(pse_score.values()), list(pse_score.keys()), linewidth = 2, c = 'b')
-    ax.gca().tick_params(axis='y', which='major', labelsize=12)
-    ax.gca().tick_params(axis='x', which='major', direction="in", labelsize=8)
+def plot_pse(pse_score):
+    plt.plot(list(pse_score.values()), list(pse_score.keys()), linewidth = 2, c = 'b')
+    plt.gca().tick_params(axis='y', which='major', labelsize=12)
+    plt.gca().tick_params(axis='x', which='major', direction="in", labelsize=8)
 
-    ax.xticks([0, .5, 1], ['100% \n                 Female Attribute', '50% Female Attribute \n 50% Male Attribute', '100% \n Male Attribute              ']);
+    plt.xticks([0, .5, 1], ['100% \n                 Female Attribute', '50% Female Attribute \n 50% Male Attribute', '100% \n Male Attribute              ']);
     # plt.yticks([0, 0.5, 1], ['No', '', 'Yes']);
-    ax.xlabel('PSE', fontsize=15)
-    ax.ylabel('Occupation', fontsize=15)
+    plt.xlabel('PSE', fontsize=15)
+    plt.ylabel('Occupation', fontsize=15)
     # plt.title('Is it a male plumber?', fontsize=14);
-    ax.gca().spines['right'].set_visible(False)
-    ax.gca().spines['top'].set_visible(False)
+    plt.gca().spines['right'].set_visible(False)
+    plt.gca().spines['top'].set_visible(False)
     # Only show ticks on the left and bottom spines
-    ax.gca().yaxis.set_ticks_position('left')
-    ax.gca().xaxis.set_ticks_position('bottom')
-    ax.grid(alpha=0.3)
-    ax.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
-    return ax
+    plt.gca().yaxis.set_ticks_position('left')
+    plt.gca().xaxis.set_ticks_position('bottom')
+    plt.grid(alpha=0.3)
+    plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
